@@ -18,6 +18,9 @@ switch($module)
 		include('./model/analyse_proposition.php');
 		$page = 'pg.bdd_content.php';
 		break;
+	case 'about':
+		$page = 'pg.about.php';
+		break;
 	default:
 		$page = 'pg.bdd_log_in.php';
 		break;
