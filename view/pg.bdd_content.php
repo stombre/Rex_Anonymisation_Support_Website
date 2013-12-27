@@ -1,4 +1,4 @@
-<div class="alert alert-info"><h3>Contenus de votre base</h3>
+<div class="alert alert-info"><h3>Contenus de votre base de donn&#233;es</h3>
 Voici le contenus de votre base de donn&#233;es.<br/>
 Veuillez selectionner les champs que vous d&#233;sirez anonymiser.
 </div>
