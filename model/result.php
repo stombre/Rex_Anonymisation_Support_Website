@@ -4,6 +4,9 @@
 	$bdd_username = $_POST['bdd_username'];
 	$bdd_password = $_POST['bdd_password'];
 
+	if($bdd_name == ''){
+		throw new ErrorException('Undefined database name.');
+	}
 	$PDO = new PDO('mysql:host='.$bdd_url.';dbname='.$bdd_name, $bdd_username, $bdd_password);
 	$q = $PDO -> query('SHOW TABLES;');
 	$tables = array();
