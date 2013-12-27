@@ -7,6 +7,7 @@ Les cl&#233;s primaires ne pouvant &#234;tre anonymiser, veuillez ne pas selecti
 Sous risque de corrompre la base de donn&#233;es
 </div>
 <form method="post" action="?p=proposition">
+	<?php echo $POST_DATA;?>
 	<div class="row">
 		<div class="col-md-3">
 			<div class="panel panel-default">

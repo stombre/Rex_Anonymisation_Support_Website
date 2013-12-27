@@ -11,13 +11,17 @@ try{
 			$page = 'pg.bdd_content.php';
 			include('./core/bdd_analyser.php');
 			include('./core/column_analyser.php');
-			include('./model/result.php');
+			include('./model/step1_show_database.php');
 			break;
 		case 'proposition':
 			$page = 'pg.anonymiser_offer.php';
 			include('./core/bdd_analyser.php');
 			include('./core/column_analyser.php');
-			include('./model/analyse_proposition.php');
+			include('./model/step2_show_offer.php');
+			break;
+		case 'xml':
+			$page = '';
+			include('./model/step3_generate_XML.php');
 			break;
 		case 'about':
 			$page = 'pg.about.php';
@@ -32,7 +36,9 @@ catch(Exception $e)
 	$page = 'pg.error.php';
 	$ERROR = $e->getMessage();
 }
-include('./view/tpl.header.php');
-include('./view/'.$page);
-include('./view/tpl.footer.php');
+if($page != ''){
+	include('./view/tpl.header.php');
+	include('./view/'.$page);
+	include('./view/tpl.footer.php');
+}
 ?>
