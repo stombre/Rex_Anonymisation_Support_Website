@@ -1,5 +1,8 @@
 <div class="panel panel-default">
 	<div class="panel-body">
+		<div class="alert alert-info"><h3>Bienvenue</h3>
+			Cette assistance va vous guider dans le processus d'anonymisation. Veuillez-vous identifier sur votre base de donn&#233;es.
+		</div>
 		<form role="form" method="post" action="?p=result">
 		  <div class="form-group">
 			<label for="bdd_address">BDD Adresse</label>

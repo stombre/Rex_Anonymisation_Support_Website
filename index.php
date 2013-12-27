@@ -10,13 +10,13 @@ switch($module)
 		include('./core/bdd_analyser.php');
 		include('./core/column_analyser.php');
 		include('./model/result.php');
-		$page = 'pg.anonymiser_offer.php';
+		$page = 'pg.bdd_content.php';
 		break;
 	case 'proposition':
 		include('./core/bdd_analyser.php');
 		include('./core/column_analyser.php');
 		include('./model/analyse_proposition.php');
-		$page = 'pg.bdd_content.php';
+		$page = 'pg.anonymiser_offer.php';
 		break;
 	case 'about':
 		$page = 'pg.about.php';
