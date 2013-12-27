@@ -5,10 +5,11 @@ class column_analyser
 	private $name;
 	private $type;
 	private $key;
+	private $table;
 	private $result = '';
 	private $rules_suggested = array();
 	
-	function __construct($column_name, $column_type, $column_key)
+	function __construct($table, $column_name, $column_type, $column_key)
 	{
 		$this->rules_suggested['sub_str'] = false;
 		$this->rules_suggested['sub_date'] = false;
@@ -25,6 +26,7 @@ class column_analyser
 		$this->name = $column_name;
 		$this->type = $column_type;
 		$this->key = $column_key;
+		$this->table = $table;
 		if($this->key != 'PRI')
 		{
 			$this->analyseName();
@@ -35,6 +37,7 @@ class column_analyser
 	public function getResult()
 	{
 		$result = '<ul>';
+		$href = '#e_' . $this->table . '_' . $this->name;
 		foreach($this->rules_suggested as $key => $value)
 		{
 			if($value == true)
@@ -42,34 +45,34 @@ class column_analyser
 				switch($key)
 				{
 					case 'sub_str':
-						$result .= '<li>Substitution de string (avec dictionnaire)</li>';
+						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'sub_string\');"><li>Substitution de string (avec dictionnaire)</li></a>';
 						break;
 					case 'sub_date':
-						$result .= '<li>Substitution de date (avec intervale)</li>';
+						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'sub_date\');"><li>Substitution de date (avec intervale)</li></a>';
 						break;
 					case 'sub_int':
-						$result .= '<li>Substitution d\'entier (avec intervale)</li>';
+						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'sub_int\');"><li>Substitution d\'entier (avec intervale)</li></a>';
 						break;
 					case 'shuffle':
-						$result .= '<li>Shuffle</li>';
+						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'shuffle\');"><li>Shuffle</li></a>';
 						break;
 					case 'commandSQL':
-						$result .= '<li>Executer une commande SQL</li>';
+						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'commandSQL\');"><li>Executer une commande SQL</li></a>';
 						break;
 					case 'var_int':
-						$result .= '<li>Variance d\'entier (avec intervale)</li>';
+						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'var_int\');"><li>Variance d\'entier (avec intervale)</li></a>';
 						break;
 					case 'var_date':
-						$result .= '<li>Variance de date (avec intervale)</li>';
+						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'var_date\');"><li>Variance de date (avec intervale)</li></a>';
 						break;
 					case 'mask_str':
-						$result .= '<li>Masker une partie de la string</li>';
+						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'mask_str\');"><li>Masker une partie de la string</li></a>';
 						break;
 					case 'mask_mail':
-						$result .= '<li>Masker une adresse mail</li>';
+						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'mask_mail\');"><li>Masker une adresse mail</li></a>';
 						break;
 					case 'concatenation':
-						$result .= '<li>Concatenation</li>';
+						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'concatenation\');"><li>Concatenation</li></a></a>';
 						break;
 				}
 			}

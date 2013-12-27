@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Anonymiser</title>
+		<title>REX - Support website anonymization</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 	</head>
@@ -15,7 +15,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-			  <a href="?" class="navbar-brand">Anonymiser</a>
+			  <a href="?" class="navbar-brand">REX - Support website anonymization</a>
 			</div>
 			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
 			  <ul class="nav navbar-nav">
