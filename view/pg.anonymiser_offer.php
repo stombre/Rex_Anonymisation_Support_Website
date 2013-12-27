@@ -10,7 +10,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-        <button type="button" class="btn btn-primary">Confirmer</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onClick = "modal_click();">Confirmer</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -41,7 +41,43 @@ Vous pouvez choisir autant de r&#232;gles que vous le d&#233;sirer pour une m&#2
 	</div>
 </form>
 <script type="text/javascript">
+//Global variable :
 var local_storage = new Array();
+var modal_fct = 0;
+
+//On modal confirmation :
+function modal_click()
+{
+	if(modal_fct != 0){
+		modal_fct();
+	}
+}
+
+//Function used for changed the type of modal :
+function modal_shuffle(type)
+{
+	modal_fct = function(){
+		$("#column_"+column).append('<li>'+type+'</li>');
+	}
+	var txt = "<b>Voulez-vous appliquez un shuffle sur cette colonne ?</b><br/><br/>";
+	txt += "<p class='alert alert-info'><b>Shuffle</b><br/>Le shuffle m&#233;lange al&#233;atoirement les valeurs de la colonne.</p>";
+	$("#modal_content").html(txt);
+}
+
+function modal_sql(column, type)
+{
+	modal_fct = function(){
+		var sql = $("#modal_sql").val();
+		$("#column_"+column).append('<li>'+type+' -> '+sql+'</li>');
+	}
+	var txt = "<b>Voulez-vous appliquez une commande SQL sur cette colonne ?</b><br/><br/>";
+	txt += "<input type='text' id='modal_sql'/><br/><br/>";
+	txt += "<p class='alert alert-info'><b>CommandeSQL</b><br/>";
+	txt += "Ecrivez une commande SQL, tel que SHA1(nom_table.nom_colonne)</p>";
+	$("#modal_content").html(txt);
+}
+
+//Function called when the user click on one of the rule :
 function anonymisation(table, column, type)
 {
 	if(typeof local_storage[table] == 'undefined'){
@@ -52,8 +88,19 @@ function anonymisation(table, column, type)
 		$("#table_"+table).append('<div class="panel panel-default"><div class="panel-body"><h4>'+column+'</h4><ul id="column_'+column+'"></ul></div></div>');
 		local_storage[table][column] = new Array();
 	}
-	$("#column_"+column).append('<li>'+type+'</li>');
+
 	$("#myModalLabel").html(table + ' - ' + column);
+	switch(type)
+	{
+		case 'shuffle':
+			modal_shuffle(type);
+			break;
+		case 'commandSQL':
+			modal_sql(column, type);
+			break;
+		default:
+			alert(type);
+	}
 	$('#myModal').modal();
 }
 </script>
