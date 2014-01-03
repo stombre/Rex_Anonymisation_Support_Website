@@ -54,7 +54,7 @@ function modal_click()
 }
 
 //Function used for changed the type of modal :
-function modal_shuffle(type)
+function modal_shuffle(column, type)
 {
 	modal_fct = function(){
 		$("#column_"+column).append('<li>'+type+'</li>');
@@ -77,6 +77,49 @@ function modal_sql(column, type)
 	$("#modal_content").html(txt);
 }
 
+function modal_sub_string(column, type)
+{
+	modal_fct = function(){
+		var dic = $("#modal_substring").val();
+		$("#column_"+column).append('<li>'+type+' -> '+dic+'</li>');
+	}
+	var txt = "<b>Voulez-vous appliquez une substitution de string sur la colonne ? Choix du dictionnaire :</b><br/><br/>";
+	txt += "<select id='modal_substring'>";
+	txt += "<option value='french_name'>Nom fran&#231;ais</option>";
+	txt += "<option value='french_fisrtname'>prenom fran&#231;ais</option>";
+	txt += "<option value='french_city'>Ville fran&#231;aise</option>";
+	txt += "</select><br/><br/>";
+	txt += "<p class='alert alert-info'><b>Substitution string</b><br/>";
+	txt += "Va remplacer votre mot par un autre choisi al&#233;atoirement dans le dictionnaire.</p>";
+	$("#modal_content").html(txt);
+}
+
+function modal_mask_str(column, type)
+{
+	modal_fct = function(){
+		var mask_lg = $("#mask_lg").val();
+		var mask_val = $("#mask_val").val();
+		$("#column_"+column).append('<li>'+type+' -> {'+mask_lg+'}'+ mask_val +'</li>');
+	}
+	var txt = "<b>Voulez-vous appliquez un maskage de string sur la colonne ?</b><br/><br/>";
+	txt += "<b>Longueur non mask&#233; :</b><br/>";
+	txt += "<input type='text' id='mask_lg' value='3'/><br/>";
+	txt += "<b>Valeur utilis&#233; pour masker :</b><br/>";
+	txt += "<input type='text' id='mask_val' value='XXXX'/><br/><br/>";
+	txt += "<p class='alert alert-info'><b>Maskage string</b><br/>";
+	txt += "Va couvrir une partie de votre chaine par un mask d&#233;finis.<br/>";
+	txt += "Ce qui donne pour la chaine 'petit test' => <span id='mask_test'>petXXXX</span></p>";
+	$("#modal_content").html(txt);
+	$('#mask_lg').change(function(){
+		var text = "petit test";
+		$('#mask_test').html(text.substr(0, $('#mask_lg').val()) + $('#mask_val').val());
+	});
+	$('#mask_val').change(function(){
+		var text = "petit test";
+		$('#mask_test').html(text.substr(0, $('#mask_lg').val()) + $('#mask_val').val());
+	});
+}
+
 //Function called when the user click on one of the rule :
 function anonymisation(table, column, type)
 {
@@ -93,10 +136,16 @@ function anonymisation(table, column, type)
 	switch(type)
 	{
 		case 'shuffle':
-			modal_shuffle(type);
+			modal_shuffle(column, type);
 			break;
 		case 'commandSQL':
 			modal_sql(column, type);
+			break;
+		case 'sub_string':
+			modal_sub_string(column, type);
+			break;
+		case 'mask_str':
+			modal_mask_str(column, type);
 			break;
 		default:
 			alert(type);
