@@ -63,6 +63,16 @@ function modal_shuffle(column, type)
 	$("#modal_content").html(txt);
 }
 
+function modal_hash(column, type)
+{
+	modal_fct = function(){
+		$("#column_"+column).append('<li>'+type+'</li>');
+	}
+	var txt = "<b>Voulez-vous appliquez un hash sur cette colonne ?</b><br/><br/>";
+	txt += "<p class='alert alert-info'><b>Hash</b><br/>La fonction de hash applique un SHA1 sur chacune des valeurs de la colonne.</p>";
+	$("#modal_content").html(txt);
+}
+
 function modal_sql(column, type)
 {
 	modal_fct = function(){
@@ -91,6 +101,54 @@ function modal_sub_string(column, type)
 	txt += "<p class='alert alert-info'><b>Substitution string</b><br/>";
 	txt += "Va remplacer votre mot par un autre choisi al&#233;atoirement dans le dictionnaire.</p>";
 	$("#modal_content").html(txt);
+}
+
+function modal_sub_int(column, type)
+{
+	modal_fct = function(){
+		var min = $("#int_min").val();
+		var max = $("#int_max").val();
+		$("#column_"+column).append('<li>'+type+' -> [' +min + " ; " + max + ']</li>');
+	}
+	var txt = "<b>Voulez-vous appliquez une substitution d'entier sur la colonne ?</b><br/><br/>";
+	txt += "Intervale : [ <input type='text' id='int_min' value='0'/> ; <input type='text' id='int_max' value='5'/> ]<br/><br/>";
+	txt += "<p class='alert alert-info'><b>Substitution entier</b><br/>";
+	txt += "Va remplacer votre nombre entier par un autre choisi al&#233;atoirement dans l'intervale de valeur fournis.</p>";
+	$("#modal_content").html(txt);
+	$('#int_min').change(function(){
+		var min = parseInt($('#int_min').val());
+		var max = parseInt($('#int_max').val());
+		if(min >= max){
+			$('#int_max').val(min + 1);
+		}
+	});
+	$('#int_max').change(function(){
+		var min = parseInt($('#int_min').val());
+		var max = parseInt($('#int_max').val());
+		if(min >= max){
+			$('#int_min').val(max - 1);
+		}
+	});
+}
+
+function modal_sub_date(column, type)
+{
+	modal_fct = function(){
+		var min = $("#date_min").val();
+		var max = $("#date_max").val();
+		var mask = $("#date_mask").val();
+		$("#column_"+column).append('<li>'+type+' -> [' +min + " ; " + max + ']('+mask+')</li>');
+	}
+	var txt = "<b>Voulez-vous appliquez une substitution de date sur la colonne ?</b><br/><br/>";
+	txt += "Mask : <input type='text' id='date_mask' value='Y-m-d H:i:s'/>";
+	txt += "Intervale d&#233;but : <input type='text' id='date_min' value='1992-02-02 22:14:35'/> <br/>";
+	txt += "Intervale fin : <input type='text' id='date_max' value='1994-12-31 23:55:55'/> ]<br/><br/>";
+	txt += "<p class='alert alert-info'><b>Substitution date</b><br/>";
+	txt += "Va remplacer votre date par une autre choisi al&#233;atoirement dans l'intervale de date fournis.<br/>";
+	txt += "Pour le 'mask' : <br/><ul><li>Le champ datetime de MySQL correspond &#224; Y-m-d H:i:s</li>";
+	txt += "<li>Le champ time de mysql correspond &#224; H:i:s</li><li>Le champ date de mysql correspond &#224; Y-m-d</li></ul></p>";
+	$("#modal_content").html(txt);
+	});
 }
 
 function modal_mask_str(column, type)
@@ -131,7 +189,7 @@ function modal_mask_mail(column, type)
 	txt += "<input type='text' id='mask_lg_bef' value='3'/><br/>";
 	txt += "<b>Longueur non mask&#233; apr&#232;s &#64; :</b><br/>";
 	txt += "<input type='text' id='mask_lg_aft' value='3'/><br/><br/>";
-	txt += "<p class='alert alert-info'><b>Maskage string</b><br/>";
+	txt += "<p class='alert alert-info'><b>Maskage mail</b><br/>";
 	txt += "Va couvrir une partie de l'adresse email.<br/>";
 	txt += "Ce qui donne pour la chaine 'james.bond&#64;gmail.com' => <span id='mask_test'>jam...&#64;gma...</span></p>";
 	$("#modal_content").html(txt);
@@ -161,6 +219,35 @@ function modal_concatenation(column, type)
 	txt += "Va placer les valeurs des colonnes pr&#233;&#231;iser en param&#232;tre &#224; la place de la valeur.</p>";
 	$("#modal_content").html(txt);
 }
+
+function modal_var_int(column, type)
+{
+	modal_fct = function(){
+		var min = $("#int_min").val();
+		var max = $("#int_max").val();
+		$("#column_"+column).append('<li>'+type+' -> [' +min + " ; " + max + ']</li>');
+	}
+	var txt = "<b>Voulez-vous appliquez une variance d'entier sur la colonne ?</b><br/><br/>";
+	txt += "Intervale : [ <input type='text' id='int_min' value='-2'/> ; <input type='text' id='int_max' value='2'/> ]<br/><br/>";
+	txt += "<p class='alert alert-info'><b>Variance d'entier</b><br/>";
+	txt += "Va additionn&#233; votre nombre par un nombre choisi al&#233;atoirement dans l'intervale.</p>";
+	$("#modal_content").html(txt);
+	$('#int_min').change(function(){
+		var min = parseInt($('#int_min').val());
+		var max = parseInt($('#int_max').val());
+		if(min >= max){
+			$('#int_max').val(min + 1);
+		}
+	});
+	$('#int_max').change(function(){
+		var min = parseInt($('#int_min').val());
+		var max = parseInt($('#int_max').val());
+		if(min >= max){
+			$('#int_min').val(max - 1);
+		}
+	});
+}
+
 //Function called when the user click on one of the rule :
 function anonymisation(table, column, type)
 {
@@ -184,6 +271,18 @@ function anonymisation(table, column, type)
 			break;
 		case 'sub_string':
 			modal_sub_string(column, type);
+			break;
+		case 'sub_date':
+			modal_sub_date(column, type);
+			break;
+		case 'sub_int':
+			modal_sub_int(column, type);
+			break;
+		case 'hash':
+			hash(column, type);
+			break;
+		case 'var_int':
+			modal_var_int(column, type);
 			break;
 		case 'mask_str':
 			modal_mask_str(column, type);

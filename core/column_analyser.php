@@ -18,7 +18,7 @@ class column_analyser
 		$this->rules_suggested['commandSQL'] = true;//Toujours possible
 		$this->rules_suggested['hash'] = false;
 		$this->rules_suggested['var_int'] = false;
-		$this->rules_suggested['var_date'] = false;
+		//$this->rules_suggested['var_date'] = false;
 		$this->rules_suggested['mask_str'] = false;
 		$this->rules_suggested['mask_mail'] = false;
 		$this->rules_suggested['concatenation'] = false;
@@ -59,12 +59,15 @@ class column_analyser
 					case 'commandSQL':
 						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'commandSQL\');"><li>Executer une commande SQL</li></a>';
 						break;
+					case 'hash':
+						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'hash\');"><li>Hash de la string</li></a>';
+						break;
 					case 'var_int':
 						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'var_int\');"><li>Variance d\'entier (avec intervale)</li></a>';
 						break;
-					case 'var_date':
+		/*			case 'var_date':
 						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'var_date\');"><li>Variance de date (avec intervale)</li></a>';
-						break;
+						break;*/
 					case 'mask_str':
 						$result .= '<a href="'.$href.'" onClick="anonymisation(\''.$this->table .'\', \''.$this->name .'\', \'mask_str\');"><li>Masker une partie de la string</li></a>';
 						break;
@@ -90,7 +93,7 @@ class column_analyser
 		}
 		if(preg_match('/date/i', $name))
 		{
-			$this->rules_suggested['var_date'] = true;
+		//	$this->rules_suggested['var_date'] = true;
 			$this->rules_suggested['sub_date'] = true;
 		}
 		if(preg_match('/mail/i', $name))
@@ -123,7 +126,7 @@ class column_analyser
 		}
 		if(preg_match('/DATE/i', $type))
 		{
-			$this->rules_suggested['var_date'] = true;
+		//	$this->rules_suggested['var_date'] = true;
 			$this->rules_suggested['sub_date'] = true;
 		}
 	}
