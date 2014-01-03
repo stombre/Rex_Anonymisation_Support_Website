@@ -53,7 +53,6 @@ function modal_click()
 	}
 }
 
-//Function used for changed the type of modal :
 function modal_shuffle(column, type)
 {
 	modal_fct = function(){
@@ -120,6 +119,48 @@ function modal_mask_str(column, type)
 	});
 }
 
+function modal_mask_mail(column, type)
+{
+	modal_fct = function(){
+		var mask_before = $("#mask_lg_bef").val();
+		var mask_after = $("#mask_lg_aft").val();
+		$("#column_"+column).append('<li>'+type+' -> {'+mask_before+'}&#64;{'+mask_after+'}</li>');
+	}
+	var txt = "<b>Voulez-vous appliquez un maskage de mail sur la colonne ?</b><br/><br/>";
+	txt += "<b>Longueur non mask&#233; avant &#64; :</b><br/>";
+	txt += "<input type='text' id='mask_lg_bef' value='3'/><br/>";
+	txt += "<b>Longueur non mask&#233; apr&#232;s &#64; :</b><br/>";
+	txt += "<input type='text' id='mask_lg_aft' value='3'/><br/><br/>";
+	txt += "<p class='alert alert-info'><b>Maskage string</b><br/>";
+	txt += "Va couvrir une partie de l'adresse email.<br/>";
+	txt += "Ce qui donne pour la chaine 'james.bond&#64;gmail.com' => <span id='mask_test'>jam...&#64;gma...</span></p>";
+	$("#modal_content").html(txt);
+	$('#mask_lg_bef').change(function(){
+		var text = "james.bond"+String.fromCharCode(64)+"gmail.com";
+		var lg_before = $('#mask_lg_bef').val();
+		var lg_after = parseInt($('#mask_lg_aft').val()) + 1;
+		$('#mask_test').html(text.substr(0, lg_before) + "..." + text.substr(text.indexOf(String.fromCharCode(64)), lg_after) + "...");
+	});
+	$('#mask_lg_aft').change(function(){
+		var text = "james.bond"+String.fromCharCode(64)+"gmail.com";
+		var lg_before = $('#mask_lg_bef').val();
+		var lg_after = parseInt($('#mask_lg_aft').val()) + 1;
+		$('#mask_test').html(text.substr(0, lg_before) + "..." + text.substr(text.indexOf(String.fromCharCode(64)), lg_after) + "...");
+	});
+}
+
+function modal_concatenation(column, type)
+{
+	modal_fct = function(){
+		var dic = $("#concat").val();
+		$("#column_"+column).append('<li>'+type+' -> ('+dic+')</li>');
+	}
+	var txt = "<b>Voulez-vous appliquez une concat&#233;nation de colonne ? Choix des colonnes &#224; concatener (s&#233;par&#233; par des ,) :</b><br/><br/>";
+	txt += "<input type='text' id='concat'/><br/><br/>";
+	txt += "<p class='alert alert-info'><b>Concat&#233;nation de colonne</b><br/>";
+	txt += "Va placer les valeurs des colonnes pr&#233;&#231;iser en param&#232;tre &#224; la place de la valeur.</p>";
+	$("#modal_content").html(txt);
+}
 //Function called when the user click on one of the rule :
 function anonymisation(table, column, type)
 {
@@ -146,6 +187,12 @@ function anonymisation(table, column, type)
 			break;
 		case 'mask_str':
 			modal_mask_str(column, type);
+			break;
+		case 'mask_mail':
+			modal_mask_mail(column, type);
+			break;
+		case 'concatenation':
+			modal_concatenation(column, type);
 			break;
 		default:
 			alert(type);
