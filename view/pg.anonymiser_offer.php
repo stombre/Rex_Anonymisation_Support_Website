@@ -140,15 +140,14 @@ function modal_sub_date(column, type)
 		$("#column_"+column).append('<li>'+type+' -> [' +min + " ; " + max + ']('+mask+')</li>');
 	}
 	var txt = "<b>Voulez-vous appliquez une substitution de date sur la colonne ?</b><br/><br/>";
-	txt += "Mask : <input type='text' id='date_mask' value='Y-m-d H:i:s'/>";
-	txt += "Intervale d&#233;but : <input type='text' id='date_min' value='1992-02-02 22:14:35'/> <br/>";
+	txt += "Mask : <input type='text' id='date_mask' value='Y-m-d H:i:s'/><br/>";
+	txt += "Intervale d&#233;but : <input type='text' id='date_min' value='1946-02-02 22:14:35'/> <br/>";
 	txt += "Intervale fin : <input type='text' id='date_max' value='1994-12-31 23:55:55'/> ]<br/><br/>";
 	txt += "<p class='alert alert-info'><b>Substitution date</b><br/>";
 	txt += "Va remplacer votre date par une autre choisi al&#233;atoirement dans l'intervale de date fournis.<br/>";
-	txt += "Pour le 'mask' : <br/><ul><li>Le champ datetime de MySQL correspond &#224; Y-m-d H:i:s</li>";
-	txt += "<li>Le champ time de mysql correspond &#224; H:i:s</li><li>Le champ date de mysql correspond &#224; Y-m-d</li></ul></p>";
+	txt += "Pour le 'mask' : <br/>Le champ datetime de MySQL correspond &#224; Y-m-d H:i:s<br/>";
+	txt += "Le champ time de mysql correspond &#224; H:i:s<br/>Le champ date de mysql correspond &#224; Y-m-d</p>";
 	$("#modal_content").html(txt);
-	});
 }
 
 function modal_mask_str(column, type)
@@ -279,7 +278,7 @@ function anonymisation(table, column, type)
 			modal_sub_int(column, type);
 			break;
 		case 'hash':
-			hash(column, type);
+			modal_hash(column, type);
 			break;
 		case 'var_int':
 			modal_var_int(column, type);
