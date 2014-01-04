@@ -19,6 +19,13 @@ try{
 			include('./core/column_analyser.php');
 			include('./model/step2_show_offer.php');
 			break;
+		case 'xml_upload':
+			$page = 'pg.xml_upload.php';
+			break;
+		case 'put_xml':
+			$page = 'pg.xml_result.php';
+			include('./model/xml_run.php');
+			break;
 		case 'xml':
 			$page = '';
 			include('./model/step3_generate_XML.php');

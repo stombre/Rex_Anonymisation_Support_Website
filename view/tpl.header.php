@@ -22,6 +22,9 @@
 				<li>
 				  <a href="?">Proposition d'anonymisation</a>
 				</li>
+				<li>
+					<a href="?p=xml_upload">Appliquez un XML</a>
+				</li>
 			  </ul>
 			  <ul class="nav navbar-nav navbar-right">
 				<li>
