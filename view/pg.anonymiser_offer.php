@@ -77,7 +77,8 @@ function form_add_rule(column, txt)
 function modal_shuffle(table, column, type)
 {
 	modal_fct = function(){
-		form_add_rule(column, '<hidden name="rule_'+list_index+'" value="shuffle;;"/>' + type);
+		var value = table + ";;" + column + ";;" + type;
+		form_add_rule(column, '<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type);
 	}
 	var txt = "<b>Voulez-vous appliquez un shuffle sur cette colonne ?</b><br/><br/>";
 	txt += "<p class='alert alert-info'><b>Shuffle</b><br/>Le shuffle m&#233;lange al&#233;atoirement les valeurs de la colonne.</p>";
@@ -87,7 +88,8 @@ function modal_shuffle(table, column, type)
 function modal_hash(table, column, type)
 {
 	modal_fct = function(){
-		form_add_rule(column,'<hidden name="rule_'+list_index+'" value="hash;;"/>' + type);
+		var value = table + ";;" + column + ";;" + type;
+		form_add_rule(column, '<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type);
 	}
 	var txt = "<b>Voulez-vous appliquez un hash sur cette colonne ?</b><br/><br/>";
 	txt += "<p class='alert alert-info'><b>Hash</b><br/>La fonction de hash applique un SHA1 sur chacune des valeurs de la colonne.</p>";
@@ -98,7 +100,8 @@ function modal_sql(table, column, type)
 {
 	modal_fct = function(){
 		var sql = $("#modal_sql").val();
-		form_add_rule(column,'<hidden name="rule_'+list_index+'" value="sql;;'+sql+'"/>' + type+' -> '+sql);
+		var value = table + ";;" + column + ";;" + type + ";;" + sql;
+		form_add_rule(column, '<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type + ' : '+sql);
 	}
 	var txt = "<b>Voulez-vous appliquez une commande SQL sur cette colonne ?</b><br/><br/>";
 	txt += "<input type='text' id='modal_sql'/><br/><br/>";
@@ -111,7 +114,8 @@ function modal_sub_string(table, column, type)
 {
 	modal_fct = function(){
 		var dic = $("#modal_substring").val();
-		form_add_rule(column,'<hidden name="rule_'+list_index+'" value="sub_string;;'+dic+'"/>' + type+' -> '+dic);
+		var value = table + ";;" + column + ";;substitution_string;;"+dic;
+		form_add_rule(column, '<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type + ' ('+dic+')' );
 	}
 	var txt = "<b>Voulez-vous appliquez une substitution de string sur la colonne ? Choix du dictionnaire :</b><br/><br/>";
 	txt += "<select id='modal_substring'>";
@@ -129,7 +133,8 @@ function modal_sub_int(table, column, type)
 	modal_fct = function(){
 		var min = $("#int_min").val();
 		var max = $("#int_max").val();
-		form_add_rule(column,'<hidden name="rule_'+list_index+'" value="sub_int;;'+min+';;'+max+'"/>' + type+' -> [' +min + " ; " + max + ']');
+		var value = table + ";;" + column + ";;substitution_int;;" + min + ';;' + max;
+		form_add_rule(column,'<input type="hidden" name="rule_'+list_index+'" value="'+ value +'"/>' + type +' -> [' +min + " ; " + max + ']');
 	}
 	var txt = "<b>Voulez-vous appliquez une substitution d'entier sur la colonne ?</b><br/><br/>";
 	txt += "Intervale : [ <input type='text' id='int_min' value='0'/> ; <input type='text' id='int_max' value='5'/> ]<br/><br/>";
@@ -158,7 +163,8 @@ function modal_sub_date(table, column, type)
 		var min = $("#date_min").val();
 		var max = $("#date_max").val();
 		var mask = $("#date_mask").val();
-		form_add_rule(column,'<hidden name="rule_'+list_index+'" value="sub_date;;'+min+';;'+max+';;'+mask+'"/>' + type+' -> [' +min + " ; " + max + ']('+mask+')');
+		var value = table + ";;" + column + ";;substitution_date;;" + mask + ';;' + min + ';;' + max;
+		form_add_rule(column,'<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type+' -> [' +min + " ; " + max + ']('+mask+')');
 	}
 	var txt = "<b>Voulez-vous appliquez une substitution de date sur la colonne ?</b><br/><br/>";
 	txt += "Mask : <input type='text' id='date_mask' value='Y-m-d H:i:s'/><br/>";
@@ -176,7 +182,8 @@ function modal_mask_str(table, column, type)
 	modal_fct = function(){
 		var mask_lg = $("#mask_lg").val();
 		var mask_val = $("#mask_val").val();
-		form_add_rule(column,'<hidden name="rule_'+list_index+'" value="mask_str;;'+mask_lg+';;'+mask_val+'"/>' + type+' -> {'+mask_lg+'}'+ mask_val );
+		var value = table + ";;" + column + ";;masking;;" + mask_lg + ';;' + mask_val;
+		form_add_rule(column,'<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type+' -> {'+mask_lg+'}'+ mask_val );
 	}
 	var txt = "<b>Voulez-vous appliquez un maskage de string sur la colonne ?</b><br/><br/>";
 	txt += "<b>Longueur non mask&#233; :</b><br/>";
@@ -202,7 +209,8 @@ function modal_mask_mail(table, column, type)
 	modal_fct = function(){
 		var mask_before = $("#mask_lg_bef").val();
 		var mask_after = $("#mask_lg_aft").val();
-		form_add_rule(column,'<hidden name="rule_'+list_index+'" value="mask_mail;;'+mask_before+';;'+mask_after+'"/>' + type+' -> {'+mask_before+'}&#64;{'+mask_after+'}');
+		var value = table + ";;" + column + ";;masking_mail;;" + mask_before + ';;' +mask_after;
+		form_add_rule(column,'<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type+' -> {'+mask_before+'}&#64;{'+mask_after+'}');
 	}
 	var txt = "<b>Voulez-vous appliquez un maskage de mail sur la colonne ?</b><br/><br/>";
 	txt += "<b>Longueur non mask&#233; avant &#64; :</b><br/>";
@@ -231,7 +239,8 @@ function modal_concatenation(table, column, type)
 {
 	modal_fct = function(){
 		var dic = $("#concat").val();
-		form_add_rule(column,'<hidden name="rule_'+list_index+'" value="concatenation;;'+dic+'"/>' + type+' -> ('+dic+')');
+		var value = table + ";;" + column + ";;" + type + ';;' + dic;
+		form_add_rule(column,'<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type+' -> ('+dic+')');
 	}
 	var txt = "<b>Voulez-vous appliquez une concat&#233;nation de colonne ? Choix des colonnes &#224; concatener (s&#233;par&#233; par des ,) :</b><br/><br/>";
 	txt += "<input type='text' id='concat'/><br/><br/>";
@@ -245,7 +254,8 @@ function modal_var_int(table, column, type)
 	modal_fct = function(){
 		var min = $("#int_min").val();
 		var max = $("#int_max").val();
-		form_add_rule(column,'<hidden name="rule_'+list_index+'" value="var_int;;'+min+';;'+max+'"/>' + type+' -> [' +min + " ; " + max + ']');
+		var value = table + ";;" + column + ";;variance_int;;" + min + ';;' + max;
+		form_add_rule(column,'<input type="hidden" name="rule_'+list_index+'" value="' + value + '"/>' + type + ' -> [' + min + " ; " + max + ']');
 	}
 	var txt = "<b>Voulez-vous appliquez une variance d'entier sur la colonne ?</b><br/><br/>";
 	txt += "Intervale : [ <input type='text' id='int_min' value='-2'/> ; <input type='text' id='int_max' value='2'/> ]<br/><br/>";

@@ -1,8 +1,6 @@
 <?php
 header ("Content-Type:text/xml");
 
-
-
 $bdd_url = $_POST['dburl'];
 $bdd_name = $_POST['dbname'];
 $bdd_username = $_POST['dbusername'];
@@ -26,6 +24,32 @@ $dom = new DOMDocument('1.0', 'iso-8859-1');
 $root = $dom->createElement('anonymisation');
 $BDD = $dom->createElement('bdd', $create_tables);
 $rules = $dom->createElement('rules');
+foreach($_POST as $key => $val)
+{
+	if(substr($key, 0, 4) == 'rule')
+	{
+		$data = explode(';;', $val);
+		$rule = $dom->createElement('rule_' . $data[2]);
+		$rule -> setAttribute('target_table', $data[0]);
+		$rule -> setAttribute('target_column', $data[1]);
+		switch($data[2])
+		{
+			case 'variance_int', 'substitution_int':
+				$min = $dom->createElement('min', $data[3]);
+				$max = $dom->createElement('max', $data[4]);
+				$rule -> appendChild($min);
+				$rule -> appendChild($max);
+				break;
+			case '':
+			
+				break;
+			case '':
+			
+				break;
+		}
+		$rules->appendChild($rule);
+	}
+}
 $root->appendChild($BDD);
 $root->appendChild($rules);
 $dom->appendChild($root);
