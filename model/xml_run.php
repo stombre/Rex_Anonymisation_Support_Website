@@ -8,6 +8,8 @@
 	$xml = simplexml_load_file($xml_name);
 	$PDO = new PDO('mysql:host='.$db_url.';dbname='.$db_name, $db_username, $db_password);
 	$PDO -> query($xml->bdd);
+	
+	$anonymisation = new Anonymisation($PDO);
 	foreach ($xml->rules->children() as $rule)
 	{
 		switch($rule->getName())
@@ -15,4 +17,5 @@
 				
 		}
 	}
+	$anonymisation -> run();
 ?>
