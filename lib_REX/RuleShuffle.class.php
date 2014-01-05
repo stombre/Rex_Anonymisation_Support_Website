@@ -14,7 +14,7 @@ class RuleShuffle extends Rule
 		$i = 0;
 		while($dt = $q->fetch())
 		{
-			$values[$i] = $dt[0];
+			$values[$i] = $dt[(string)$this->targetColumn];
 			$i++;
 		}
 		shuffle($values);
