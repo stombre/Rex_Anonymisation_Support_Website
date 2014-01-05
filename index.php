@@ -9,13 +9,13 @@ try{
 	{
 		case 'result':
 			$page = 'pg.bdd_content.php';
-			include('./core/bdd_analyser.php');
+			include('./core/table.class.php');
 			include('./core/column_analyser.php');
 			include('./model/step1_show_database.php');
 			break;
 		case 'proposition':
 			$page = 'pg.anonymiser_offer.php';
-			include('./core/bdd_analyser.php');
+			include('./core/table.class.php');
 			include('./core/column_analyser.php');
 			include('./model/step2_show_offer.php');
 			break;
@@ -24,6 +24,7 @@ try{
 			break;
 		case 'put_xml':
 			$page = 'pg.xml_result.php';
+			include('./core/table.class.php');
 			include('./lib_REX/Anonymisation.class.php');
 			include('./lib_REX/Rule.class.php');
 			include('./lib_REX/RuleCommand.class.php');

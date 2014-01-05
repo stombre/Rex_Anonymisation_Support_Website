@@ -12,7 +12,7 @@
 	$tables = array();
 	while($d = $q -> fetch())
 	{
-		array_push($tables, new table_analyser($PDO, $d[0]));
+		array_push($tables, new Table($PDO, $d[0]));
 	}
 	$q->closeCursor();
 	$content_html = '';

@@ -120,7 +120,8 @@ function modal_sub_string(table, column, type)
 	var txt = "<b>Voulez-vous appliquez une substitution de string sur la colonne ? Choix du dictionnaire :</b><br/><br/>";
 	txt += "<select id='modal_substring'>";
 	txt += "<option value='french_name'>Nom fran&#231;ais</option>";
-	txt += "<option value='french_fisrtname'>prenom fran&#231;ais</option>";
+	txt += "<option value='french_firstname_boy'>prenom fran&#231;ais masculin</option>";
+	txt += "<option value='french_firstname_girl'>prenom fran&#231;ais feminin</option>";
 	txt += "<option value='french_city'>Ville fran&#231;aise</option>";
 	txt += "</select><br/><br/>";
 	txt += "<p class='alert alert-info'><b>Substitution string</b><br/>";

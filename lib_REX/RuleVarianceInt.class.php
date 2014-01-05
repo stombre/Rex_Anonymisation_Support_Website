@@ -1,6 +1,6 @@
 <?php
 //Variance :
-class RuleVarianceInt extends CommandRule
+class RuleVarianceInt extends RuleCommand
 {
 	public function __construct($table, $column, $removeMax, $addMax)
 	{

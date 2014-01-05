@@ -40,8 +40,8 @@ class RuleSubstitutionDate extends Rule
 			$min = rand(intval($this->date_min->format('i')), intval($this->date_max->format('i')));
 			$sec = rand(intval($this->date_min->format('s')), intval($this->date_max->format('s')));
 			$year = str_pad(strval($year), 4, '0', STR_PAD_LEFT);
-			$result[$dt[$this->targetColumn]] = new DateTime($year.'-'.$month.'-'.$day. ' '.$hour.':'.$min.':'.$sec);
-			$result[$dt[$this->targetColumn]] = $result[$dt[$this->targetColumn]]->format($this->date_mask);
+			$result[$dt[0]] = new DateTime($year.'-'.$month.'-'.$day. ' '.$hour.':'.$min.':'.$sec);
+			$result[$dt[0]] = $result[$dt[0]]->format($this->date_mask);
 		}
 		$q->closeCursor();
 		//Pour chaque paire de clé Ancienne valeur => Futur valeur, on applique les changements ;

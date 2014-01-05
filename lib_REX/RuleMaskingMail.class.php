@@ -1,6 +1,6 @@
 <?php
 //Mask une adresse mail :
-class RuleMaskingMail extends CommandRule
+class RuleMaskingMail extends RuleCommand
 {
 	public function __construct($table, $column, $lengthBeforeAt, $lengthAfterAt)
 	{
