@@ -10,13 +10,13 @@ try{
 		case 'result':
 			$page = 'pg.bdd_content.php';
 			include('./core/table.class.php');
-			include('./core/column_analyser.php');
+			include('./core/column.class.php');
 			include('./model/step1_show_database.php');
 			break;
 		case 'proposition':
 			$page = 'pg.anonymiser_offer.php';
 			include('./core/table.class.php');
-			include('./core/column_analyser.php');
+			include('./core/column.class.php');
 			include('./model/step2_show_offer.php');
 			break;
 		case 'xml_upload':
