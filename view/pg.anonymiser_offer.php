@@ -17,9 +17,9 @@
 </div><!-- /.modal -->
 
 <div class="alert alert-info"><h3>Proposition d'anonymisation</h3>
-Voici les r&#232;gles qu'on vous propose pour anonymiser les colonnes que vous
-voulez anonymiser dans votre base de donn&#234;es.<br/>
-Vous pouvez choisir autant de r&#232;gles que vous le d&#233;sirer pour une m&#234;me colonne.
+Voici les r&#232;gles que l'on vous propose pour anonymiser les colonnes que vous
+voulez dans votre base de donn&#234;es.<br/>
+Vous pouvez choisir autant de r&#232;gles que vous le d&#233;sirez pour une m&#234;me colonne.
 </div>
 <form method="post" action="?p=xml">
 <?php

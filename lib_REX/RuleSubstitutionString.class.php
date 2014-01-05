@@ -41,7 +41,7 @@ class RuleSubstitutionString extends Rule
 				$cur = $result[array_rand($result, 1)];
 			}
 			//On applique $result[Ancienne valeur] = Futur valeur
-			$result[$dt[$this->targetColumn]] = $cur;
+			$result[$dt[(string)$this->targetColumn]] = $cur;
 		}
 		$q->closeCursor();
 		//Pour chaque paire de clé Ancienne valeur => Futur valeur, on applique les changements ;
