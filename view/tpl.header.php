@@ -20,7 +20,7 @@
 			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
 			  <ul class="nav navbar-nav">
 				<li>
-				  <a href="?">Proposition d'anonymisation</a>
+				  <a href="?">Assistance d'anonymisation</a>
 				</li>
 				<li>
 					<a href="?p=xml_upload">Appliquez un XML</a>
