@@ -1,9 +1,9 @@
-<div class="alert alert-info"><h3>Contenus de votre base de donn&#233;es</h3>
-Voici le contenus de votre base de donn&#233;es.<br/>
+<div class="alert alert-info"><h3>Contenu de votre base de donn&#233;es</h3>
+Voici le contenu de votre base de donn&#233;es.<br/>
 Veuillez selectionner les champs que vous d&#233;sirez anonymiser.
 </div>
 <div class="alert alert-warning">
-Les cl&#233;s primaires ne pouvant &#234;tre anonymiser, veuillez ne pas selectionner des cl&#233;s &#233;trang&#232;res.<br/>
+Les cl&#233;s primaires ne pouvant &#234;tre anonymisées, veuillez ne pas selectionner des cl&#233;s &#233;trang&#232;res.<br/>
 Sous risque de corrompre la base de donn&#233;es
 </div>
 <form method="post" action="?p=proposition">

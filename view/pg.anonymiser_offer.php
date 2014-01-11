@@ -34,7 +34,7 @@ Vous pouvez choisir autant de r&#232;gles que vous le d&#233;sirez pour une m&#2
 		<div class="panel-body text-center ">
 			<div class="alert alert-info">
 				Cette &#233tape va permettre de g&#233;n&#233;rer un fichier XML exploitable par REX XML execution.<br/>
-				Pour enregistrer facilement le r&#233;sultat, faites un clic droit sur le bouton &#231;i dessous, puis s&#233;l&#233;ctionner enregistrez sous.
+				Pour enregistrer facilement le r&#233;sultat, faites un clic droit sur le bouton &#231;i dessous, puis s&#233;l&#233;ctionnez enregistrer sous.
 			</div>
 			<button type="submit" class="btn btn-default btn-lg">T&#234;l&#234;charger le fichier XML</button>
 		</div>
@@ -80,7 +80,7 @@ function modal_shuffle(table, column, type)
 		var value = table + ";;" + column + ";;" + type;
 		form_add_rule(column, '<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type);
 	}
-	var txt = "<b>Voulez-vous appliquez un shuffle sur cette colonne ?</b><br/><br/>";
+	var txt = "<b>Voulez-vous appliquer un shuffle sur cette colonne ?</b><br/><br/>";
 	txt += "<p class='alert alert-info'><b>Shuffle</b><br/>Le shuffle m&#233;lange al&#233;atoirement les valeurs de la colonne.</p>";
 	$("#modal_content").html(txt);
 }
@@ -91,7 +91,7 @@ function modal_hash(table, column, type)
 		var value = table + ";;" + column + ";;" + type;
 		form_add_rule(column, '<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type);
 	}
-	var txt = "<b>Voulez-vous appliquez un hash sur cette colonne ?</b><br/><br/>";
+	var txt = "<b>Voulez-vous appliquer un hash sur cette colonne ?</b><br/><br/>";
 	txt += "<p class='alert alert-info'><b>Hash</b><br/>La fonction de hash applique un SHA1 sur chacune des valeurs de la colonne.</p>";
 	$("#modal_content").html(txt);
 }
@@ -103,10 +103,10 @@ function modal_sql(table, column, type)
 		var value = table + ";;" + column + ";;" + type + ";;" + sql;
 		form_add_rule(column, '<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type + ' : '+sql);
 	}
-	var txt = "<b>Voulez-vous appliquez une commande SQL sur cette colonne ?</b><br/><br/>";
+	var txt = "<b>Voulez-vous appliquer une commande SQL sur cette colonne ?</b><br/><br/>";
 	txt += "<input type='text' id='modal_sql'/><br/><br/>";
 	txt += "<p class='alert alert-info'><b>CommandeSQL</b><br/>";
-	txt += "Ecrivez une commande SQL, tel que SHA1(nom_table.nom_colonne)</p>";
+	txt += "Ecrivez une commande SQL telle que SHA1(nom_table.nom_colonne)</p>";
 	$("#modal_content").html(txt);
 }
 
@@ -117,7 +117,7 @@ function modal_sub_string(table, column, type)
 		var value = table + ";;" + column + ";;substitution_string;;"+dic;
 		form_add_rule(column, '<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type + ' ('+dic+')' );
 	}
-	var txt = "<b>Voulez-vous appliquez une substitution de string sur la colonne ? Choix du dictionnaire :</b><br/><br/>";
+	var txt = "<b>Voulez-vous appliquer une substitution de string sur la colonne ? Choix du dictionnaire :</b><br/><br/>";
 	txt += "<select id='modal_substring'>";
 	txt += "<option value='french_name'>Nom fran&#231;ais</option>";
 	txt += "<option value='french_firstname_boy'>prenom fran&#231;ais masculin</option>";
@@ -137,10 +137,10 @@ function modal_sub_int(table, column, type)
 		var value = table + ";;" + column + ";;substitution_int;;" + min + ';;' + max;
 		form_add_rule(column,'<input type="hidden" name="rule_'+list_index+'" value="'+ value +'"/>' + type +' -> [' +min + " ; " + max + ']');
 	}
-	var txt = "<b>Voulez-vous appliquez une substitution d'entier sur la colonne ?</b><br/><br/>";
-	txt += "Intervale : [ <input type='text' id='int_min' value='0'/> ; <input type='text' id='int_max' value='5'/> ]<br/><br/>";
+	var txt = "<b>Voulez-vous appliquer une substitution d'entier sur la colonne ?</b><br/><br/>";
+	txt += "Intervalle : [ <input type='text' id='int_min' value='0'/> ; <input type='text' id='int_max' value='5'/> ]<br/><br/>";
 	txt += "<p class='alert alert-info'><b>Substitution entier</b><br/>";
-	txt += "Va remplacer votre nombre entier par un autre choisi al&#233;atoirement dans l'intervale de valeur fournis.</p>";
+	txt += "Va remplacer votre nombre entier par un autre choisi al&#233;atoirement dans l'intervalle de valeur fourni.</p>";
 	$("#modal_content").html(txt);
 	$('#int_min').change(function(){
 		var min = parseInt($('#int_min').val());
@@ -167,12 +167,12 @@ function modal_sub_date(table, column, type)
 		var value = table + ";;" + column + ";;substitution_date;;" + mask + ';;' + min + ';;' + max;
 		form_add_rule(column,'<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type+' -> [' +min + " ; " + max + ']('+mask+')');
 	}
-	var txt = "<b>Voulez-vous appliquez une substitution de date sur la colonne ?</b><br/><br/>";
+	var txt = "<b>Voulez-vous appliquer une substitution de date sur la colonne ?</b><br/><br/>";
 	txt += "Mask : <input type='text' id='date_mask' value='Y-m-d H:i:s'/><br/>";
-	txt += "Intervale d&#233;but : <input type='text' id='date_min' value='1946-02-02 22:14:35'/> <br/>";
-	txt += "Intervale fin : <input type='text' id='date_max' value='1994-12-31 23:55:55'/> ]<br/><br/>";
+	txt += "Intervalle d&#233;but : <input type='text' id='date_min' value='1946-02-02 22:14:35'/> <br/>";
+	txt += "Intervalle fin : <input type='text' id='date_max' value='1994-12-31 23:55:55'/> ]<br/><br/>";
 	txt += "<p class='alert alert-info'><b>Substitution date</b><br/>";
-	txt += "Va remplacer votre date par une autre choisi al&#233;atoirement dans l'intervale de date fournis.<br/>";
+	txt += "Va remplacer votre date par une autre choisie al&#233;atoirement dans l'intervalle de date fourni.<br/>";
 	txt += "Pour le 'mask' : <br/>Le champ datetime de MySQL correspond &#224; Y-m-d H:i:s<br/>";
 	txt += "Le champ time de mysql correspond &#224; H:i:s<br/>Le champ date de mysql correspond &#224; Y-m-d</p>";
 	$("#modal_content").html(txt);
@@ -186,13 +186,13 @@ function modal_mask_str(table, column, type)
 		var value = table + ";;" + column + ";;masking;;" + mask_lg + ';;' + mask_val;
 		form_add_rule(column,'<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type+' -> {'+mask_lg+'}'+ mask_val );
 	}
-	var txt = "<b>Voulez-vous appliquez un maskage de string sur la colonne ?</b><br/><br/>";
-	txt += "<b>Longueur non mask&#233; :</b><br/>";
+	var txt = "<b>Voulez-vous appliquer un masquage de string sur la colonne ?</b><br/><br/>";
+	txt += "<b>Longueur non mask&#233;e :</b><br/>";
 	txt += "<input type='text' id='mask_lg' value='3'/><br/>";
-	txt += "<b>Valeur utilis&#233; pour masker :</b><br/>";
+	txt += "<b>Valeur utilis&#233;e pour masquer :</b><br/>";
 	txt += "<input type='text' id='mask_val' value='XXXX'/><br/><br/>";
-	txt += "<p class='alert alert-info'><b>Maskage string</b><br/>";
-	txt += "Va couvrir une partie de votre chaine par un mask d&#233;finis.<br/>";
+	txt += "<p class='alert alert-info'><b>Masquage string</b><br/>";
+	txt += "Va couvrir une partie de votre chaine par un masque d&#233;fini.<br/>";
 	txt += "Ce qui donne pour la chaine 'petit test' => <span id='mask_test'>petXXXX</span></p>";
 	$("#modal_content").html(txt);
 	$('#mask_lg').change(function(){
@@ -213,12 +213,12 @@ function modal_mask_mail(table, column, type)
 		var value = table + ";;" + column + ";;masking_mail;;" + mask_before + ';;' +mask_after;
 		form_add_rule(column,'<input type="hidden" name="rule_'+list_index+'" value="'+value+'"/>' + type+' -> {'+mask_before+'}&#64;{'+mask_after+'}');
 	}
-	var txt = "<b>Voulez-vous appliquez un maskage de mail sur la colonne ?</b><br/><br/>";
-	txt += "<b>Longueur non mask&#233; avant &#64; :</b><br/>";
+	var txt = "<b>Voulez-vous appliquer un masquage de mail sur la colonne ?</b><br/><br/>";
+	txt += "<b>Longueur non mask&#233;e avant &#64; :</b><br/>";
 	txt += "<input type='text' id='mask_lg_bef' value='3'/><br/>";
-	txt += "<b>Longueur non mask&#233; apr&#232;s &#64; :</b><br/>";
+	txt += "<b>Longueur non mask&#233;e apr&#232;s &#64; :</b><br/>";
 	txt += "<input type='text' id='mask_lg_aft' value='3'/><br/><br/>";
-	txt += "<p class='alert alert-info'><b>Maskage mail</b><br/>";
+	txt += "<p class='alert alert-info'><b>Masquage mail</b><br/>";
 	txt += "Va couvrir une partie de l'adresse email.<br/>";
 	txt += "Ce qui donne pour la chaine 'james.bond&#64;gmail.com' => <span id='mask_test'>jam...&#64;gma...</span></p>";
 	$("#modal_content").html(txt);
@@ -246,7 +246,7 @@ function modal_concatenation(table, column, type)
 	var txt = "<b>Voulez-vous appliquez une concat&#233;nation de colonne ? Choix des colonnes &#224; concatener (s&#233;par&#233; par des ,) :</b><br/><br/>";
 	txt += "<input type='text' id='concat'/><br/><br/>";
 	txt += "<p class='alert alert-info'><b>Concat&#233;nation de colonne</b><br/>";
-	txt += "Va placer les valeurs des colonnes pr&#233;&#231;iser en param&#232;tre &#224; la place de la valeur.</p>";
+	txt += "Va placer les valeurs des colonnes pr&#233;&#231;is&#233;es en param&#232;tres &#224; la place de la valeur.</p>";
 	$("#modal_content").html(txt);
 }
 
@@ -258,10 +258,10 @@ function modal_var_int(table, column, type)
 		var value = table + ";;" + column + ";;variance_int;;" + min + ';;' + max;
 		form_add_rule(column,'<input type="hidden" name="rule_'+list_index+'" value="' + value + '"/>' + type + ' -> [' + min + " ; " + max + ']');
 	}
-	var txt = "<b>Voulez-vous appliquez une variance d'entier sur la colonne ?</b><br/><br/>";
+	var txt = "<b>Voulez-vous appliquer une variance d'entier sur la colonne ?</b><br/><br/>";
 	txt += "Intervale : [ <input type='text' id='int_min' value='-2'/> ; <input type='text' id='int_max' value='2'/> ]<br/><br/>";
 	txt += "<p class='alert alert-info'><b>Variance d'entier</b><br/>";
-	txt += "Va additionn&#233; votre nombre par un nombre choisi al&#233;atoirement dans l'intervale.</p>";
+	txt += "Va additionner votre nombre par un nombre choisi al&#233;atoirement dans l'intervalle.</p>";
 	$("#modal_content").html(txt);
 	$('#int_min').change(function(){
 		var min = parseInt($('#int_min').val());

@@ -23,7 +23,7 @@
 				  <a href="?">Assistance d'anonymisation</a>
 				</li>
 				<li>
-					<a href="?p=xml_upload">Appliquez un XML</a>
+					<a href="?p=xml_upload">Appliquer un XML</a>
 				</li>
 			  </ul>
 			  <ul class="nav navbar-nav navbar-right">
