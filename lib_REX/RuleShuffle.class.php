@@ -22,9 +22,10 @@ class RuleShuffle extends Rule
 		$i = 0;
 		while($dt = $q->fetch())
 		{
-			$pdo->exec('UPDATE ' . $this->targetTable . ' SET ' . $this->targetColumn . ' = \''.$values[$i].'\' WHERE ' . $this->targetColumn . ' = \'' . $dt[$this->targetColumn] . '\'');
+			$pdo->exec('UPDATE ' . $this->targetTable . ' SET ' . $this->targetColumn . ' = \'REX_'.$values[$i].'\' WHERE ' . $this->targetColumn . ' = \'' . $dt[$this->targetColumn] . '\'');
 			$i++;
 		}
+		$pdo->exec('UPDATE '.$this->targetTable.' SET '.$this->targetColumn .'= SUBSTR('.$this->targetColumn .', 5)');
 		$q -> closeCursor();
 	}
 }

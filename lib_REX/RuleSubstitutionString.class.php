@@ -29,6 +29,8 @@ class RuleSubstitutionString extends Rule
 	{
 		//On recupere toutes les valeurs possibles du champ :
 		$q = $pdo->query('SELECT DISTINCT ' . $this->targetColumn . ' FROM ' . $this->targetTable);
+		//$q = $pdo->query('SELECT * FROM ' . $this->targetTable);
+		
 		//On mélange le dataset :
 		$dataset = $this->dataset;
 		shuffle($dataset);
@@ -47,7 +49,8 @@ class RuleSubstitutionString extends Rule
 		//Pour chaque paire de clé Ancienne valeur => Futur valeur, on applique les changements ;
 		foreach($result as $key => $value)
 		{
-			$pdo->exec('UPDATE ' . $this->targetTable . ' SET ' . $this->targetColumn . ' = \'' . $value . '\' WHERE ' . $this->targetColumn . ' = \'' . $key . '\'');
+			$pdo->exec('UPDATE ' . $this->targetTable . ' SET ' . $this->targetColumn . ' = \'REX_' . $value . '\' WHERE ' . $this->targetColumn . ' = \'' . $key . '\'');
 		}
+		$pdo->exec('UPDATE '.$this->targetTable.' SET '.$this->targetColumn .'= SUBSTR('.$this->targetColumn .', 5)');
 	}
 }

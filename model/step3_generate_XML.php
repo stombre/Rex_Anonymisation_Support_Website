@@ -39,7 +39,7 @@ foreach($_POST as $key => $val)//Traitement une à une, des règles saisies par 
 	{
 		$data = explode(';;', $val);
 		$rule = $dom->createElement('rule_' . $data[2]);
-		$rule -> setAttribute('target_table', $data[0]);
+		$rule -> setAttribute('target_table', 'REX_'.$data[0]);
 		$rule -> setAttribute('target_column', $data[1]);
 		switch($data[2])
 		{
@@ -52,7 +52,7 @@ foreach($_POST as $key => $val)//Traitement une à une, des règles saisies par 
 				break;
 			case 'commandSQL':
 				$rule = $dom->createElement('rule_' . $data[2], $data[3]);
-				$rule -> setAttribute('target_table', $data[0]);
+				$rule -> setAttribute('target_table', 'REX_'.$data[0]);
 				$rule -> setAttribute('target_column', $data[1]);
 				break;
 			case 'concatenation':
