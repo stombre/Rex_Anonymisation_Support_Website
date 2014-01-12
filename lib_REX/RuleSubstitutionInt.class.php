@@ -20,7 +20,7 @@ class RuleSubstitutionInt extends Rule
 		while($dt = $q->fetch())
 		{
 			//On applique $result[Ancienne valeur] = Futur valeur
-			$result[$dt[$this->targetColumn]] = rand( $this->value_min, $this->value_max);
+			$result[$dt[(string)$this->targetColumn]] = rand((integer)$this->value_min,(integer) $this->value_max);
 		}
 		$q->closeCursor();
 		//Pour chaque paire de clé Ancienne valeur => Futur valeur, on applique les changements ;

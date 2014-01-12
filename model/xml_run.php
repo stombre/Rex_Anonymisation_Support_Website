@@ -38,32 +38,24 @@
 	{
 		$column = $rule['target_column'];
 		$table = $rule['target_table'];
+		if(key_exists((string)$table, $table_rapport) == false){$table_rapport[(string)$table] = 0;}
+		$table_rapport[(string)$table]++;
 		switch($rule->getName())
 		{
 			case 'rule_variance_int':
 				$anonymisation -> add_rule(new RuleVarianceInt($table, $column, $rule->min, $rule->max));
-				if(in_array($table, $table_rapport) != true){$table_rapport[$table] = 0;}
-				$table_rapport[$table]++;
 				break;
 			case 'rule_hash':
 				$anonymisation -> add_rule(new RuleHash($table, $column));
-				if(in_array($table, $table_rapport) != true){$table_rapport[$table] = 0;}
-				$table_rapport[$table]++;
 				break;
 			case 'rule_shuffle':
 				$anonymisation -> add_rule(new RuleShuffle($table, $column));
-				if(in_array($table, $table_rapport) != true){$table_rapport[$table] = 0;}
-				$table_rapport[$table]++;
 				break;
 			case 'rule_substitution_int':
 				$anonymisation -> add_rule(new RuleSubstitutionInt($table, $column, $rule->min, $rule->max));
-				if(in_array($table, $table_rapport) != true){$table_rapport[$table] = 0;}
-				$table_rapport[$table]++;
 				break;
 			case 'rule_commandSQL':
 				$anonymisation -> add_rule(new RuleCommand($table, $column, $rule));
-				if(in_array($table, $table_rapport) != true){$table_rapport[$table] = 0;}
-				$table_rapport[$table]++;
 				break;
 			case 'rule_concatenation':
 				$cols_p = array();
@@ -71,23 +63,15 @@
 					array_push($cols_p, $cols);
 				}
 				$anonymisation -> add_rule(new RuleConcatenation($table, $column, $cols_p));
-				if(in_array($table, $table_rapport) != true){$table_rapport[$table] = 0;}
-				$table_rapport[$table]++;
 				break;
 			case 'rule_masking':
 				$anonymisation -> add_rule(new RuleMasking($table, $column, $rule->displayed_length, $rule->covered));
-				if(in_array($table, $table_rapport) != true){$table_rapport[$table] = 0;}
-				$table_rapport[$table]++;
 				break;
 			case 'rule_masking_mail':
 				$anonymisation -> add_rule(new RuleMaskingMail($table, $column, $rule->displayed_length_before, $rule->displayed_length_after));
-				if(in_array($table, $table_rapport) != true){$table_rapport[$table] = 0;}
-				$table_rapport[$table]++;
 				break;
 			case 'rule_substitution_date':
 				$anonymisation -> add_rule(new RuleSubstitutionDate($table, $column, $rule->mask, new DateTime($rule->min), new DateTime($rule->max)));
-				if(in_array($table, $table_rapport) != true){$table_rapport[$table] = 0;}
-				$table_rapport[$table]++;
 				break;
 			case 'rule_substitution_string':
 				$param = array('');
@@ -107,8 +91,6 @@
 						break;
 				}
 				$anonymisation -> add_rule(new RuleSubstitutionString($table, $column, $param));
-				if(in_array($table, $table_rapport) != true){$table_rapport[$table] = 0;}
-				$table_rapport[$table]++;
 				break;
 		}
 	}
